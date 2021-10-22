@@ -227,7 +227,7 @@ def download(url = 'http://www.wikipedia.org/',
 #----<GLOBAL VARIABLES>----#
 
 # initialising global array for database entry
-dbentry = []
+db_entry = []
 
 #---------<FUNCTIONS>--------#
 
@@ -251,9 +251,9 @@ def ebay():
         ebaydl = download("https://www.ebay.com.au/b/3D-Printers/183063/bn_55158719", incognito=True)           
     
         # regex to find title, cost and description from the source code
-        ebayitems = findall(r'<h3 class=\"s-item__title\"\>([^<]+)</h3>[^AU]+(AU \$[0-9]+.[0-9]+)</span>[^N]+NEGATIVE\">([^<]+)',ebaydl, MULTILINE)                                     # regex to find title, cost and description from the source code
+        ebayitems = findall(r'<h3 class=\"s-item__title\"\>([^<]+)</h3>[^AU]+(AU \$[0-9]+.[0-9]+)</span>[^N]+NEGATIVE\">([^<]+)',ebaydl, MULTILINE)                                     
 
-        global dbentry                                                                          # initialise the database entry array as global within the function
+        global db_entry                                                                          # initialise the database entry array as global within the function
         
         if item_select.get() == 1:                                                              # if the latest item from ebay is selected then:
 
@@ -264,7 +264,7 @@ def ebay():
             update_results("Item from Ebay. \nDescription: "+item[2]+"\nURL: "+\
                 "https://www.ebay.com.au/b/3D-Printers/183063/bn_55158719")                     # use the update_results function to update the text box to show the description
             
-            dbentry = ['Ebay',item[0],item[1]]                                                  # assigning the used data to the database entry array to be used later
+            db_entry = ['Ebay',item[0],item[1]]                                                  # assigning the used data to the database entry array to be used later
             
         elif item_select.get() == 2:                                                            # if the second item from ebay is selected then:
 
@@ -275,7 +275,7 @@ def ebay():
             update_results("Item from Ebay. \nDescription: "+item[2]+"\nURL: "+\
                 "https://www.ebay.com.au/b/3D-Printers/183063/bn_55158719")                     # use the update_results function to update the text box to show the description
 
-            dbentry = ['Ebay',item[0],item[1]]                                                  # assigning the used data to the database entry array to be used later
+            db_entry = ['Ebay',item[0],item[1]]                                                  # assigning the used data to the database entry array to be used later
 
         elif item_select.get() == 3:                                                            # if the third item from ebay is selected then:
 
@@ -286,19 +286,19 @@ def ebay():
             update_results("Item from Ebay. \nDescription: "+item[2]+"\nURL: "+\
                 "https://www.ebay.com.au/b/3D-Printers/183063/bn_55158719")                     # use the update_results function to update the text box to show the description
 
-            dbentry = ['Ebay',item[0],item[1]]                                                  # assigning the used data to the database entry array to be used later
+            db_entry = ['Ebay',item[0],item[1]]                                                  # assigning the used data to the database entry array to be used later
 
     except TypeError:                                                                           # if a TypeError is raised the default error text is displayed on the GUI
         print("Type Error")
         desc_box["text"] = 'No item description available'
         price["text"] = '-- $--.--'
-        update_results("Item from Ebay. URL: https://www.ebay.com.au/b/3D-Printers/183063/bn_55158719") 
+        update_results("Item from Ebay. \nURL: https://www.ebay.com.au/b/3D-Printers/183063/bn_55158719") 
 
     except IndexError:                                                                          # if an IndexError is raised the default error text is displayed on the GUI                                 
         print("Index Error")
         desc_box["text"] = 'No item description available'
         price["text"] = '-- $--.--'
-        update_results("Item from Ebay. URL: https://www.ebay.com.au/b/3D-Printers/183063/bn_55158719")  
+        update_results("Item from Ebay. \nURL: https://www.ebay.com.au/b/3D-Printers/183063/bn_55158719")  
         
     except:                                                                                     # any other errors raise the default error text as well
         print('other')
@@ -320,7 +320,7 @@ def bss():
         # regex to find the title, cost and description from the source code
         bssitems = findall(r"<h2 class=\"listing-header\">[\n ]+([^<]+)<\/h2>[^>]+[>]([AU \$0-9.]+)<\/h3>[^0-9]+[^<]+<div class=\"max-height-static\">[^>]+>([A-Za-z ,.;0-9&-]+)",bssdl)
     
-        global dbentry                                                                          # initialise the database entry array as global within the function
+        global db_entry                                                                          # initialise the database entry array as global within the function
 
         if item_select.get() == 4:                                                              # if the latest item from bss is selected then:
 
@@ -346,7 +346,7 @@ def bss():
             update_results('Item from Buy Search Sell. \nDESCRIPTION: '+item[2]+\
                 '\nURL: https://www.buysearchsell.com.au/all-locations/pets/?sort=date')        # use the update_results function to update the text box to show the description
             
-            dbentry = ['Buy Search Sell',titlerregexfive,cost]                                  # assigning the used data to the database entry array to be used later
+            db_entry = ['Buy Search Sell',titlerregexfive,cost]                                  # assigning the used data to the database entry array to be used later
 
         elif item_select.get() == 5:                                                            # if the second item from bss is selected then:
 
@@ -372,7 +372,7 @@ def bss():
             update_results('Item from Buy Search Sell. \nDESCRIPTION: '+item[2]+\
                 '\nURL: https://www.buysearchsell.com.au/all-locations/pets/?sort=date')        # use the update_results function to update the text box to show the description
             
-            dbentry = ['Buy Search Sell',titlerregexfive,cost]
+            db_entry = ['Buy Search Sell',titlerregexfive,cost]
 
         elif item_select.get() == 6:                                                            # if the third item from bss is selected then:
 
@@ -398,25 +398,25 @@ def bss():
             update_results('Item from Buy Search Sell. \nDESCRIPTION: '+item[2]+\
                 '\nURL: https://www.buysearchsell.com.au/all-locations/pets/?sort=date')        # use the update_results function to update the text box to show the description
             
-            dbentry = ['Buy Search Sell',titlerregexfive,cost]
+            db_entry = ['Buy Search Sell',titlerregexfive,cost]
             
     except TypeError:                                                                           # if a TypeError is raised the default error text is displayed on the GUI
         print('type')
         desc_box["text"] = 'No item description available'
         price["text"] = '-- $--.--'
-        update_results("Item from Buy Search Sell. URL: https://www.buysearchsell.com.au/all-locations/pets/?sort=date")
+        update_results("Item from Buy Search Sell. \nURL: https://www.buysearchsell.com.au/all-locations/pets/?sort=date")
 
     except IndexError:                                                                          # if an IndexError is raised the default error text is displayed on the GUI
         print('index')
         desc_box["text"] = 'No item description available'
         price["text"] = '-- $--.--'
-        update_results("Item from Buy Search Sell. URL: https://www.buysearchsell.com.au/all-locations/pets/?sort=date")
+        update_results("Item from Buy Search Sell. \nURL: https://www.buysearchsell.com.au/all-locations/pets/?sort=date")
 
     except:                                                                                     # any other errors raise the default error text as well
         print('else')
         desc_box["text"] = 'No item description available'
         price["text"] = '-- $--.--'
-        update_results("Item from Buy Search Sell. URL: https://www.buysearchsell.com.au/all-locations/pets/?sort=date")
+        update_results("Item from Buy Search Sell. \nURL: https://www.buysearchsell.com.au/all-locations/pets/?sort=date")
 
 
 # function to display japan today information
@@ -434,7 +434,7 @@ def japan():
 
         japdesc = findall('post_date">[^\/]+\/div>[^>]+>([^<]+)',japdl, MULTILINE)              # regex to find the description from the source code
 
-        global dbentry                                                                          # initialise the database entry array as global within the function
+        global db_entry                                                                         # initialise the database entry array as global within the function
 
         if item_select.get() == 7:                                                              # if the latest item from japan today is selected then:
 
@@ -462,7 +462,7 @@ def japan():
             update_results("Item from Japan Today. \nDESC: "+desc+\
                 "\nURL: https://classifieds.japantoday.com/index/index/category/appliance")     # using the update_results function to update the text box to show the description
 
-            dbentry = ['Japan Today',title, displaycost]                                        # assigning the used data to the database entry array to be used later
+            db_entry = ['Japan Today',title, displaycost]                                        # assigning the used data to the database entry array to be used later
 
         elif item_select.get() == 8:                                                            # if the second item from japan today is selected then:
 
@@ -491,7 +491,7 @@ def japan():
             update_results("Item from Japan Today. \nDESC: "+desc+\
                 "\nURL: https://classifieds.japantoday.com/index/index/category/appliance")     # using the update_results function to update the text box to show the description
 
-            dbentry = ['Japan Today',title, displaycost]                                        # assigning the used data to the database entry array to be used later
+            db_entry = ['Japan Today',title, displaycost]                                       # assigning the used data to the database entry array to be used later
 
         elif item_select.get() == 9:                                                            # if the third item from japan today is selected then:
 
@@ -519,7 +519,7 @@ def japan():
             update_results("Item from Japan Today. \nDESC: "+desc+\
                 "\nURL: https://classifieds.japantoday.com/index/index/category/appliance")     # using the update_results function to update the text box to show the description
 
-            dbentry = ['Japan Today',title, displaycost]                                        # assigning the used data to the database entry array to be used later
+            db_entry = ['Japan Today',title, displaycost]                                       # assigning the used data to the database entry array to be used later
 
     except TypeError:                                                                           # if a TypeError is raised the default error text is displayed on the GUI
         print('type')
@@ -550,9 +550,9 @@ def database():
     classifieds_db = connection.cursor()                                                        # create a cursor
     classifieds_db.execute("DELETE FROM current_selection")                                     # execute the query to delete all items from the database
 
-    source = dbentry[0]                                                                         # assigning the source to be the first item from the list
-    description = dbentry[1]                                                                    # assigning the description to be the second item from the list
-    price = dbentry[2]                                                                          # assigning the price to be the third item from the list
+    source = db_entry[0]                                                                        # assigning the source to be the first item from the list
+    description = db_entry[1]                                                                   # assigning the description to be the second item from the list
+    price = db_entry[2]                                                                         # assigning the price to be the third item from the list
 
     classifieds_db.execute("INSERT INTO current_selection VALUES ('"+source+"', \
         '"+description+"', '"+price+"')")                                                       # execute the query to insert the source, description and price into the database
@@ -673,8 +673,10 @@ third_label = Radiobutton(option_three,text='Appliances',variable=shop_selection
 #creating canvas for japan image
 image_three = Canvas(option_three,height=70,width=140)              
 #importing japan image
-japan_photo = PhotoImage(file='japan.png')                                
+japan_photo = PhotoImage(file='japan.png')   
 
+# Selection Choices
+# making a frame to store the japan options
 choices_three = Frame(option_three, height = 3, width = 4,borderwidth=3,background=accent2,relief='groove')
 # option one: latest item - variable 7
 choices_31 = Radiobutton(choices_three, text = 'Latest Item', width=10,borderwidth=3, variable=item_select,value=7, command=japan,justify=CENTER,background=accent2,cursor="hand2")
