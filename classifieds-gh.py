@@ -253,7 +253,7 @@ def ebay():
         # regex to find title, cost and description from the source code
         ebayitems = findall(r'<h3 class=\"s-item__title\"\>([^<]+)</h3>[^AU]+(AU \$[0-9]+.[0-9]+)</span>[^N]+NEGATIVE\">([^<]+)',ebaydl, MULTILINE)                                     
 
-        global db_entry                                                                          # initialise the database entry array as global within the function
+        global db_entry                                                                         # initialise the database entry array as global within the function
         
         if item_select.get() == 1:                                                              # if the latest item from ebay is selected then:
 
@@ -264,7 +264,7 @@ def ebay():
             update_results("Item from Ebay. \nDescription: "+item[2]+"\nURL: "+\
                 "https://www.ebay.com.au/b/3D-Printers/183063/bn_55158719")                     # use the update_results function to update the text box to show the description
             
-            db_entry = ['Ebay',item[0],item[1]]                                                  # assigning the used data to the database entry array to be used later
+            db_entry = ['Ebay',item[0],item[1]]                                                 # assigning the used data to the database entry array to be used later
             
         elif item_select.get() == 2:                                                            # if the second item from ebay is selected then:
 
@@ -275,7 +275,7 @@ def ebay():
             update_results("Item from Ebay. \nDescription: "+item[2]+"\nURL: "+\
                 "https://www.ebay.com.au/b/3D-Printers/183063/bn_55158719")                     # use the update_results function to update the text box to show the description
 
-            db_entry = ['Ebay',item[0],item[1]]                                                  # assigning the used data to the database entry array to be used later
+            db_entry = ['Ebay',item[0],item[1]]                                                 # assigning the used data to the database entry array to be used later
 
         elif item_select.get() == 3:                                                            # if the third item from ebay is selected then:
 
@@ -286,7 +286,7 @@ def ebay():
             update_results("Item from Ebay. \nDescription: "+item[2]+"\nURL: "+\
                 "https://www.ebay.com.au/b/3D-Printers/183063/bn_55158719")                     # use the update_results function to update the text box to show the description
 
-            db_entry = ['Ebay',item[0],item[1]]                                                  # assigning the used data to the database entry array to be used later
+            db_entry = ['Ebay',item[0],item[1]]                                                 # assigning the used data to the database entry array to be used later
 
     except TypeError:                                                                           # if a TypeError is raised the default error text is displayed on the GUI
         print("Type Error")
@@ -320,7 +320,7 @@ def bss():
         # regex to find the title, cost and description from the source code
         bssitems = findall(r"<h2 class=\"listing-header\">[\n ]+([^<]+)<\/h2>[^>]+[>]([AU \$0-9.]+)<\/h3>[^0-9]+[^<]+<div class=\"max-height-static\">[^>]+>([A-Za-z ,.;0-9&-]+)",bssdl)
     
-        global db_entry                                                                          # initialise the database entry array as global within the function
+        global db_entry                                                                         # initialise the database entry array as global within the function
 
         if item_select.get() == 4:                                                              # if the latest item from bss is selected then:
 
@@ -346,7 +346,7 @@ def bss():
             update_results('Item from Buy Search Sell. \nDESCRIPTION: '+item[2]+\
                 '\nURL: https://www.buysearchsell.com.au/all-locations/pets/?sort=date')        # use the update_results function to update the text box to show the description
             
-            db_entry = ['Buy Search Sell',titlerregexfive,cost]                                  # assigning the used data to the database entry array to be used later
+            db_entry = ['Buy Search Sell',titlerregexfive,cost]                                 # assigning the used data to the database entry array to be used later
 
         elif item_select.get() == 5:                                                            # if the second item from bss is selected then:
 
@@ -462,7 +462,7 @@ def japan():
             update_results("Item from Japan Today. \nDESC: "+desc+\
                 "\nURL: https://classifieds.japantoday.com/index/index/category/appliance")     # using the update_results function to update the text box to show the description
 
-            db_entry = ['Japan Today',title, displaycost]                                        # assigning the used data to the database entry array to be used later
+            db_entry = ['Japan Today',title, displaycost]                                       # assigning the used data to the database entry array to be used later
 
         elif item_select.get() == 8:                                                            # if the second item from japan today is selected then:
 
